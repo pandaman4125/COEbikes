@@ -1,0 +1,12 @@
+/* Webfont: NanumGothicExtraBold */@font-face {
+    font-family: 'NanumGothicExtraBold';
+    src: url('NanumGothicExtraBold.eot'); /* IE9 Compat Modes */
+    src: url('NanumGothicExtraBold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('NanumGothicExtraBold.woff') format('woff'), /* Modern Browsers */
+         url('NanumGothicExtraBold.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('NanumGothicExtraBold.svg#NanumGothicExtraBold') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

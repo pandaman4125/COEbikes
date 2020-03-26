@@ -1,0 +1,12 @@
+/* Webfont: QuicksandLight-Regular */@font-face {
+    font-family: 'QuicksandLight';
+    src: url('QuicksandLight-Regular.eot'); /* IE9 Compat Modes */
+    src: url('QuicksandLight-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('QuicksandLight-Regular.woff') format('woff'), /* Modern Browsers */
+         url('QuicksandLight-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('QuicksandLight-Regular.svg#QuicksandLight-Regular') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

@@ -1,0 +1,12 @@
+/* Webfont: QuicksandBookOblique-Regular */@font-face {
+    font-family: 'QuicksandBookOblique';
+    src: url('QuicksandBookOblique-Regular.eot'); /* IE9 Compat Modes */
+    src: url('QuicksandBookOblique-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('QuicksandBookOblique-Regular.woff') format('woff'), /* Modern Browsers */
+         url('QuicksandBookOblique-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('QuicksandBookOblique-Regular.svg#QuicksandBookOblique-Regular') format('svg'); /* Legacy iOS */
+    font-style: italic;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+
