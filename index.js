@@ -2,6 +2,7 @@ import path from "path";
 import express from "express";
 import * as dotenv from "dotenv";
 import * as FTP from "basic-ftp";
+import * as cron from "cron";
 
 dotenv.default.config();
 const app = express();
@@ -37,5 +38,11 @@ const pullInventory = async () => {
 
 };
 
+const job = new cron.default.CronJob("0 */2 * * *", () => {
+    pullInventory();
+}, null, true, "America/Los_Angeles");
+job.start();
+
+console.log("started");
+
 pullInventory();
-setTimeout(pullInventory, 1000 * 60 * 60 * 8);

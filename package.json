@@ -4,9 +4,11 @@
     "@contentful/rich-text-html-renderer": "^13.4.0",
     "@types/lodash": "^4.14.149",
     "@types/node": "^13.9.1",
+    "@vue/component-compiler-utils": "^3.1.1",
     "@vue/composition-api": "^0.4.0",
     "basic-ftp": "^4.5.3",
     "contentful": "^7.14.0",
+    "cron": "^1.8.2",
     "csv": "^5.3.2",
     "csv-parse": "^4.8.8",
     "dotenv": "^8.2.0",
@@ -14,20 +16,18 @@
     "forever": "^2.0.0",
     "lodash": "^4.17.15",
     "parcel": "^1.12.4",
+    "sass": "^1.26.3",
     "src": "^1.1.2",
+    "typescript": "^3.8.3",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4",
-    "vue-router": "^3.1.6"
+    "vue-router": "^3.1.6",
+    "vue-template-compiler": "^2.6.11"
   },
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html",
     "serve": "forever start index.js"
   },
-  "devDependencies": {
-    "@vue/component-compiler-utils": "^3.1.1",
-    "sass": "^1.26.3",
-    "typescript": "^3.8.3",
-    "vue-template-compiler": "^2.6.11"
-  }
+  "devDependencies": {}
 }
