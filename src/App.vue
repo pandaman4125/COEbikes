@@ -1,25 +1,24 @@
 <template>
-	<div>
-		<Header></Header>
-		<RouterView></RouterView>
-		<Footer></Footer>
-	</div>
+  <div>
+    <Header></Header>
+    <RouterView></RouterView>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script lang="ts">
-	import {defineComponent} from "@vue/composition-api";
-	import Header from "~/components/global/Header.vue";
-	import Footer from "~/components/global/Footer.vue";
+import Header from "@/components/global/Header.vue";
+import Footer from "@/components/global/Footer.vue";
+import {defineComponent} from "vue";
 
-	export default defineComponent({
-		components: {
-			Header,
-			Footer
-		},
-		props: {},
-		setup(props) {
+export default defineComponent({
+	components: {
+		Header,
+		Footer
+	},
+	setup() {
 
-		}
-	});
+	}
+});
 
 </script>

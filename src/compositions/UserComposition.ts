@@ -1,6 +1,6 @@
-import {computed, reactive} from "@vue/composition-api";
+import {computed, reactive} from "vue";
 
-import UserInterface from "~/interfaces/UserInterface";
+import UserInterface from "@/interfaces/UserInterface";
 
 export default class UserComposition {
 	public firstName: string = "";

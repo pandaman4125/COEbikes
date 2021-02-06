@@ -1,18 +1,15 @@
-import "~/styles/index.scss";
-import Vue from "vue";
-import VueCompositionApi from "@vue/composition-api";
-import router from "~lib/router";
-import App from "~/App.vue";
+require("babel-core/register");
+require("babel-polyfill");
 
-Vue.use(VueCompositionApi);
-declare module "@vue/composition-api/dist/component/component" {
-	interface SetupContext {
-		readonly refs: { [key: string]: Vue | Element | Vue[] | Element[] };
-	}
-}
+import "@/styles/index.scss";
+import router from "@/lib/router";
+import App from "@/App.vue";
+import {createApp} from "vue";
 
-new Vue({
-	router,
-	render: h => h(App)
-}).$mount("#app");
+createApp(App)
+	.use(router)
+	.mount("#app");
 
+window.addEventListener("load", () => {
+	document.body.classList.add("loaded");
+});
