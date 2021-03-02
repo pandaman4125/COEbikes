@@ -74,7 +74,8 @@ module.exports = () => ({
 			".js",
 			".vue",
 			".json"
-		]
+		],
+		fallback: {}
 	},
 	plugins: [
 		new VueLoaderPlugin(),

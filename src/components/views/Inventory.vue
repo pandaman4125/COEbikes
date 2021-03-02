@@ -16,7 +16,6 @@
             <thead>
               <tr>
                 <th>Year</th>
-                <!-- <th>Type</th> -->
                 <th>Brand</th>
                 <th>Model</th>
                 <th>Size</th>
@@ -28,7 +27,6 @@
             <tbody>
               <tr v-for="i in inventory">
                 <td>{{ i.Year }}</td>
-                <!-- <td></td> -->
                 <td>{{ i.Brand }}</td>
                 <td>{{ i.Model }}</td>
                 <td>{{ i.Size }}</td>
@@ -47,55 +45,58 @@
 import {defineComponent, ref, Ref} from "vue";
 import Hero from "@/components/global/Hero.vue";
 import ContentfulClient from "@/lib/ContentfulClient";
-import CSVParser from "@/lib/CSVParser";
 import * as _ from "lodash";
 
 export default defineComponent({
-	components: {
-		Hero
-	},
-	props: {},
-	setup(props) {
-		const parser = new CSVParser();
+  components: {
+    Hero
+  },
+  props: {},
+  setup(props) {
+    // Contentful client
+    const client = new ContentfulClient();
 
-		// Contentful client
-		const client = new ContentfulClient();
+    // Declare reactive properties
+    const page: Ref = ref(<object>{});
+    const inventory: Ref = ref(<Array<object>>[]);
 
-		// Declare reactive properties
-		const page: Ref = ref(<object>{});
-		const inventory: Ref = ref(<Array<object>>[]);
+    // Populate reactive properties with Contentful data
+    client.getPage("Inventory")
+        .then((p: object): void => {
+          page.value = p;
+        });
 
-		// Populate reactive properties with Contentful data
-		client.getPage("Inventory")
-			.then((p: object): void => {
-				page.value = p;
-			});
+    // Populate inventory
+    const XHR = new XMLHttpRequest();
+    XHR.onload = async () => {
+      if (XHR.response) {
+        const csvStr: string = XHR.response;
+        const arr = csvStr.split("\n");
+        const jsonObj = [];
+        const headers = arr[0].split(",");
+        for (let i = 1; i < arr.length; i++) {
+          const data = arr[i].split(",");
+          const obj = {};
+          for (let j = 0; j < data.length; j++) {
+            let h = headers[j].trim();
+            obj[h] = data[j].replace(/"/g, "")
+                .trim();
+          }
+          jsonObj.push(obj);
+        }
 
-		// Populate inventory
-		const XHR = new XMLHttpRequest();
-		XHR.onload = (): void => {
-			if (XHR.response) {
-				const csv: string = XHR.response;
+        console.log(jsonObj);
 
-				const obj: Array<Array<string>> = parser.parse(csv, ",");
+        inventory.value = _.filter(jsonObj, {Type: "Electric"});
+      }
+    };
+    XHR.open("GET", "/inventory.csv");
+    XHR.send();
 
-				// const obj = parse(csv, {
-				// 	columns: true,
-				// 	delimiter: ",",
-				// 	ltrim: true,
-				// 	rtrim: true
-				// });
-
-				inventory.value = _.filter(obj, {Type: "Electric"});
-			}
-		};
-		XHR.open("GET", "/inventory.csv");
-		XHR.send();
-
-		return {
-			page,
-			inventory
-		};
-	}
+    return {
+      page,
+      inventory
+    };
+  }
 });
 </script>
