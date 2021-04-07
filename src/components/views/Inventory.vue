@@ -76,16 +76,14 @@ export default defineComponent({
         const headers = arr[0].split(",");
         for (let i = 1; i < arr.length; i++) {
           const data = arr[i].split(",");
-          const obj = {};
+          const obj: any = {};
           for (let j = 0; j < data.length; j++) {
-            let h = headers[j].trim();
+            let h: string = headers[j].trim();
             obj[h] = data[j].replace(/"/g, "")
                 .trim();
           }
           jsonObj.push(obj);
         }
-
-        console.log(jsonObj);
 
         inventory.value = _.filter(jsonObj, {Type: "Electric"});
       }

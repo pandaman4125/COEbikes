@@ -43,7 +43,7 @@ const pullInventory = async () => {
 
 const job = new cron.CronJob("0 */2 * * *", () => {
 	pullInventory();
-}, null, true, "America/Los_Angeles");
+}, null, true, "America/Denver");
 job.start();
 
 console.log("started");

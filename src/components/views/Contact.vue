@@ -14,29 +14,29 @@
            class="content">
 
         <div class="aspect-ratio aspect-ratio--16x9">
-          <iframe :src="`https://www.google.com/maps/embed/v1/place?key=AIzaSyCLJ2ZD25fnigGL32JwCeE-1htFw9v1bIc&q=${companyInfo.fields.address}`"
+          <iframe :src="`https://www.google.com/maps/embed/v1/place?key=AIzaSyAQ0T-TacHuI_2H1-9yHLaFz02VGKLytwE&q=${companyInfo.fields.address}`"
                   class="greyscale"></iframe>
         </div>
 
         <dl>
           <dt>Email Us:</dt>
           <dd>
-            <a :href="`mailto:${companyInfo.fields.emailAddress}`">{{
-                companyInfo.fields.emailAddress
-              }}</a>
+            <a :href="`mailto:${companyInfo.fields.emailAddress}`">
+              {{ companyInfo.fields.emailAddress }}
+            </a>
           </dd>
 
           <dt>Call Us:</dt>
           <dd>
-            <a :href="`tel:${companyInfo.fields.phoneNumber}`">{{
-                companyInfo.fields.phoneNumber
-              }}</a>
+            <a :href="`tel:${companyInfo.fields.phoneNumber}`">
+              {{ companyInfo.fields.phoneNumber }}
+            </a>
           </dd>
 
           <dt>Visit Us:</dt>
           <dd>Colorado E-Bike
             <br/>
-            {{ companyInfo.fields.address }}
+              {{ companyInfo.fields.address }}
           </dd>
         </dl>
       </div>
@@ -50,32 +50,32 @@ import Hero from "@/components/global/Hero.vue";
 import ContentfulClient from "@/lib/ContentfulClient";
 
 export default defineComponent({
-	components: {
-		Hero
-	},
-	props: {},
-	setup(props) {
-		// Contentful client
-		const client = new ContentfulClient();
+  components: {
+    Hero
+  },
+  props: {},
+  setup(props) {
+    // Contentful client
+    const client = new ContentfulClient();
 
-		// Declare reactive properties
-		const page = ref({});
-		const companyInfo = ref({});
+    // Declare reactive properties
+    const page = ref({});
+    const companyInfo = ref({});
 
-		// Populate reactive properties with Contentful data
-		client.getPage("Contact")
-			.then((p) => {
-				page.value = p;
-			});
-		client.getCompanyInfo()
-			.then((i) => {
-				companyInfo.value = i;
-			});
+    // Populate reactive properties with Contentful data
+    client.getPage("Contact")
+        .then((p) => {
+          page.value = p;
+        });
+    client.getCompanyInfo()
+        .then((i) => {
+          companyInfo.value = i;
+        });
 
-		return {
-			page,
-			companyInfo
-		};
-	}
+    return {
+      page,
+      companyInfo
+    };
+  }
 });
 </script>
