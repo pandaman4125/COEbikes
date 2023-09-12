@@ -1,8 +1,0 @@
-.content {
-	@include container();
-	padding: 0 $line-height;
-
-	@include breakpoint(large) {
-		padding: 0;
-	}
-}
