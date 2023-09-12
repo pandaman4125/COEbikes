@@ -1,0 +1,6 @@
+.footer {
+	@include container();
+	justify-content: space-around;
+	margin-bottom: 2 * $line-height;
+	margin-top: 3 * $line-height;
+}

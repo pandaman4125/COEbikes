@@ -1,0 +1,92 @@
+$total-cols: nth(nth($grid-breakpoints, length($grid-breakpoints)), 2);
+
+@function parseInt($n) {
+	@return $n / ($n * 0 + 1);
+}
+
+@mixin breakpoint($n) {
+	@media only screen and (min-width: map_get($grid-breakpoints, $n)) {
+		@content;
+	}
+}
+
+@mixin container($justify : space-between) {
+	$break: nth($grid-breakpoints, length($grid-breakpoints));
+	$break: nth($break, 2);
+
+	@include flexbox();
+	@include flex(0, 1, auto);
+	@include flex-direction(row);
+	@include flex-wrap(wrap);
+	@include justify-content($justify);
+
+	margin-left: auto;
+	margin-right: auto;
+
+	@if ($grid-type == magic) {
+		max-width: #{$break};
+		width: 100%;
+	} @else if ($grid-type == fluid) {
+		max-width: 100%;
+		width: 100%;
+	}
+	@if ($container-padding != false) {
+		padding: 0 $container-padding;
+	}
+}
+
+@mixin cols($cols: false, $reference: $total-cols, $gutter: $grid-gutter) {
+	@if ($grid-padding != false) {
+		padding-left: $grid-padding;
+		padding-right: $grid-padding;
+	}
+
+	@if ($cols == false) {
+		// each element will try to take up as much space as possible on the same line
+		// no gutter will be applied.
+		@include flex(1);
+	} @else {
+		@include flex(0, 0, auto);
+
+		// assign widths
+		@if ($gutter != false) {
+			@include flex-basis(calc(
+				(#{$cols} / #{$reference} * 100%) - #{$gutter} + (#{$cols} / #{$reference} * #{$gutter})
+			));
+
+			max-width: calc(
+				(#{$cols} / #{$reference} * 100%) - #{$gutter} + (#{$cols} / #{$reference} * #{$gutter})
+			);
+		} @else {
+			@include flex-basis(calc(#{$cols} / #{$reference} * 100%));
+			max-width: calc(#{$cols} / #{$reference} * 100%);
+		}
+	}
+}
+
+@mixin pre($cols, $reference: $total-cols) {
+	@if ($grid-gutter != false) {
+		margin-left: calc((#{$cols} / #{$reference} * 100%) + (#{$cols} / #{$reference} * #{$grid-gutter}));
+	} @else {
+		margin-left: calc(#{$cols} / #{$reference} * 100%);
+	}
+}
+
+@mixin post($cols, $reference: $total-cols) {
+	@if ($grid-gutter != false) {
+		margin-right: calc((#{$cols} / #{$reference} * 100%) + (#{$cols} / #{$reference} * #{$grid-gutter}));
+	} @else {
+		margin-right: calc(#{$cols} / #{$reference} * 100%);
+	}
+}
+
+@mixin container-grid($cols:1) {
+	display: grid;
+	grid-column-start: 1;
+	grid-column-end: $cols+1
+}
+
+@mixin cols-grid($cols, $reference) {
+	grid-column: $cols / $reference;
+}
+

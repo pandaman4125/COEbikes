@@ -1,0 +1,24 @@
+$font-size: 1rem;
+$line-height: 1.5rem;
+
+$height-hero: 20 * $line-height;
+$height-hero-alt: 15 * $line-height;
+
+$grid-type: "magic";
+$container-padding: false;
+$grid-padding: false;
+$grid-gutter: 4 * $line-height;
+
+$grid-breakpoints: (
+	small: 32rem,
+	medium: 64rem,
+	large: 72rem,
+);
+
+$color-background: #FFFFFF;
+$color-text: #656565;
+$color-primary: #65821a;
+$color-secondary: rgba($color-text, 0.6);
+
+$font-primary: "Nanum Gothic", sans-serif;
+$font-secondary: "Quicksand", sans-serif;
