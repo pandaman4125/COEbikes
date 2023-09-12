@@ -52,5 +52,5 @@ app.get("/inventory.csv", async (req, res) => {
 
 app.get("*", (req, res) => res.sendFile(path.join(process.cwd(), "dist/index.html")));
 
-await pullInventory();
+//await pullInventory();
 app.listen(port, () => console.log(`http://localhost:${port}!`));
