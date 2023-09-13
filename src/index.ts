@@ -1,10 +1,7 @@
-require("babel-core/register");
-require("babel-polyfill");
-
 import "@/styles/index.scss";
 import router from "@/lib/router";
 import App from "@/App.vue";
-import {createApp} from "vue";
+import { createApp } from "vue";
 
 createApp(App)
 	.use(router)
@@ -12,4 +9,4 @@ createApp(App)
 
 window.addEventListener("load", () => {
 	document.body.classList.add("loaded");
-});
+})
